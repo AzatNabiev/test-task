@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @ToString(exclude = {"events"})
 @EqualsAndHashCode(exclude = {"events"})
-@Table(name = "account",indexes = {@Index(name = "email", columnList = "email", unique = true)})
+@Table(name = "account", indexes = {@Index(name = "email", columnList = "email", unique = true)})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

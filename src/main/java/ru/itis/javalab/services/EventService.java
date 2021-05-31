@@ -11,11 +11,15 @@ import java.util.Optional;
 
 public interface EventService {
     List<EventDto> getFreeTime(EventForm eventForm);
+
     List<User> checkExistingUsers(List<String> userLogins);
+
     Optional<Event> findIntersection(List<Event> mergedFreeTime, Event event);
+
     List<Event> getMergedCommonSchedule(List<Event> mergedFreeTime, List<Event> usersFreeTime);
 
     EventDto addEvent(EventForm eventForm);
+
     Boolean isEventExist(LocalDateTime eventStarts, LocalDateTime eventEnds, User user);
 
     EventDto addEvents(EventForm eventForm);

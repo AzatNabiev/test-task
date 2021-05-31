@@ -37,16 +37,16 @@ public class EventsControllerTest {
     private EventService eventService;
 
     @BeforeEach
-    public void setUp(){
-        LocalDate eventDate = LocalDate.of(29,12,25);
-        LocalTime eventTime = LocalTime.of(1,20,31);
-        LocalDateTime eventStarts = LocalDateTime.of(eventDate,eventTime);
-        eventDate = LocalDate.of(29,12,25);
-        eventTime = LocalTime.of(1,30,31);
-        LocalDateTime eventEnds = LocalDateTime.of(eventDate,eventTime);
+    public void setUp() {
+        LocalDate eventDate = LocalDate.of(29, 12, 25);
+        LocalTime eventTime = LocalTime.of(1, 20, 31);
+        LocalDateTime eventStarts = LocalDateTime.of(eventDate, eventTime);
+        eventDate = LocalDate.of(29, 12, 25);
+        eventTime = LocalTime.of(1, 30, 31);
+        LocalDateTime eventEnds = LocalDateTime.of(eventDate, eventTime);
 
         EventForm eventForm = EventForm.builder()
-                .logins(Arrays.asList("test@gmail.com","test1@gmail.com"))
+                .logins(Arrays.asList("test@gmail.com", "test1@gmail.com"))
                 .eventStarts("2016-12-25 19:00:13")
                 .eventEnds("2016-12-25 20:30:00")
                 .build();
@@ -72,7 +72,7 @@ public class EventsControllerTest {
 
         when(eventService.addEvents(eventForm)).thenReturn(
                 EventDto.builder()
-                        .logins(Arrays.asList("test@gmail.com","test1@gmail.com"))
+                        .logins(Arrays.asList("test@gmail.com", "test1@gmail.com"))
                         .eventStarts(eventStarts)
                         .eventEnds(eventEnds)
                         .build());
@@ -81,7 +81,7 @@ public class EventsControllerTest {
         doThrow(new IncorrectGivenData("Incorrect given data"))
                 .when(eventService)
                 .getFreeTime(EventForm.builder()
-                        .logins(Arrays.asList("testgmail.com","test1@gmail.com")).build());
+                        .logins(Arrays.asList("testgmail.com", "test1@gmail.com")).build());
 
         doThrow(new IncorrectGivenData("Incorrect given data"))
                 .when(eventService)
@@ -91,7 +91,7 @@ public class EventsControllerTest {
         doThrow(new IncorrectGivenData("Incorrect given data"))
                 .when(eventService)
                 .addEvents(EventForm.builder()
-                        .logins(Arrays.asList("testgmail.com","test1@gmail.com")).build());
+                        .logins(Arrays.asList("testgmail.com", "test1@gmail.com")).build());
     }
 
     @Nested

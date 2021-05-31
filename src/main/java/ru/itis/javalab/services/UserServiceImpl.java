@@ -11,10 +11,10 @@ import ru.itis.javalab.repositories.UserRepository;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository){
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
                 .build();
         try {
             userRepository.save(user);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             throw new AlreadyExistUserException("User already exists");
         }
         return UserDto.fromFormToDto(userForm);

@@ -6,18 +6,18 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-
-import static org.mockito.Mockito.doThrow;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.hamcrest.Matchers.is;
 import ru.itis.javalab.dto.UserDto;
 import ru.itis.javalab.exception.IncorrectGivenData;
 import ru.itis.javalab.form.UserForm;
 import ru.itis.javalab.services.UserService;
+
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -32,7 +32,7 @@ public class UsersControllerTest {
     private UserService userService;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         UserForm testUser = UserForm.builder()
                 .login("test@gmail.com")
                 .name("Azat")
@@ -47,6 +47,7 @@ public class UsersControllerTest {
                 .addUser(UserForm.builder()
                         .login("testtest").build());
     }
+
     @Nested
     @DisplayNameGeneration(value = DisplayNameGenerator.ReplaceUnderscores.class)
     @DisplayName("addUser() is working")

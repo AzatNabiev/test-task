@@ -4,7 +4,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class NoFreeTimeException extends RuntimeException {
-    public NoFreeTimeException(String message){
+    public NoFreeTimeException(String message) {
         super(message);
     }
 }

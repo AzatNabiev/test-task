@@ -26,6 +26,7 @@ Content-Type: application/json
   "eventStarts": "2030-12-25T19:00:13",
   "eventEnds": "2030-12-25T20:30:00"
 }
+
 ###
 POST http://localhost:8080/events
 Content-Type: application/json
@@ -35,21 +36,29 @@ Content-Type: application/json
   "eventStarts": "2016-12-25T19:00:13",
   "eventEnds": "2016-12-25T20:30:00"
 }
+
 ###
 POST http://localhost:8080/events/several
 Content-Type: application/json
 
 {
-   "logins":["tesgmail.com","test@gmail.com"],
-   "name": "Созвон по проекту",
-   "eventStarts": "2019-12-25T19:00:13",
-   "eventEnds": "2019-12-25T20:30:00"
+  "logins": [
+    "tesgmail.com",
+    "test@gmail.com"
+  ],
+  "name": "Созвон по проекту",
+  "eventStarts": "2019-12-25T19:00:13",
+  "eventEnds": "2019-12-25T20:30:00"
 }
+
 ###
 
 POST http://localhost:8080/events/time/free
 Content-Type: application/json
 
 {
-    "logins":["test1@gmail.com","test@gmail.com"]
+  "logins": [
+    "test1@gmail.com",
+    "test@gmail.com"
+  ]
 }

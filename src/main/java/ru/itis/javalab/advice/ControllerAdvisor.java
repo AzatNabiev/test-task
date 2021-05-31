@@ -1,6 +1,5 @@
 package ru.itis.javalab.advice;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,6 +24,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
+
     @ExceptionHandler(NoSuchEventException.class)
     public ResponseEntity<Object> handleNoSuchEventException(
             NoSuchEventException ex, WebRequest request) {
@@ -35,9 +35,10 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
+
     @ExceptionHandler(AlreadyExistUserException.class)
     public ResponseEntity<Object> handleNoSuchEventException(
-            AlreadyExistUserException ex, WebRequest webRequest){
+            AlreadyExistUserException ex, WebRequest webRequest) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", ex.getMessage());
@@ -47,16 +48,17 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NoFreeTimeException.class)
     public ResponseEntity<Object> handleNoFreeTimeException(
-            NoFreeTimeException ex, WebRequest webRequest){
+            NoFreeTimeException ex, WebRequest webRequest) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", ex.getMessage());
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
+
     @ExceptionHandler(AlreadyExistEventException.class)
     public ResponseEntity<Object> handleAlreadyExistEventException(
-            AlreadyExistEventException ex, WebRequest webRequest){
+            AlreadyExistEventException ex, WebRequest webRequest) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", ex.getMessage());
@@ -66,7 +68,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(IncorrectGivenData.class)
     public ResponseEntity<Object> handleIncorrectGivenDataException(
-            IncorrectGivenData ex, WebRequest webRequest){
+            IncorrectGivenData ex, WebRequest webRequest) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", ex.getMessage());

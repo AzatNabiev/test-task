@@ -22,11 +22,11 @@ import java.util.Optional;
 @Service
 public class EventServiceImpl implements EventService {
 
-    private EventRepository eventRepository;
-    private UserRepository userRepository;
+    private final EventRepository eventRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public EventServiceImpl(EventRepository eventRepository, UserRepository userRepository){
+    public EventServiceImpl(EventRepository eventRepository, UserRepository userRepository) {
         this.eventRepository = eventRepository;
         this.userRepository = userRepository;
     }
@@ -55,7 +55,7 @@ public class EventServiceImpl implements EventService {
         } else {
             throw new NoSuchEventException("no such user");
         }
-        if (mergedFreeTime == null){
+        if (mergedFreeTime == null) {
             throw new NoFreeTimeException("no free time");
         } else {
             return EventDto.fromModelToDto(mergedFreeTime);
@@ -79,33 +79,33 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Optional<Event> findIntersection(List<Event> mergedFreeTime, Event event) {
-        Event newEvent=null;
+        Event newEvent = null;
         LocalDateTime eventStarts = event.getEventStarts();
         LocalDateTime eventEnds = event.getEventEnds();
-        for (int i=0; i<mergedFreeTime.size();i++){
+        for (int i = 0; i < mergedFreeTime.size(); i++) {
             LocalDateTime freeTimeStarts = mergedFreeTime.get(i).getEventStarts();
             LocalDateTime freeTimeEnds = mergedFreeTime.get(i).getEventEnds();
             if (((eventStarts.isBefore(freeTimeStarts) || (eventStarts.isEqual(freeTimeStarts))) && eventStarts.isBefore(freeTimeEnds))
-                    && (eventEnds.isAfter(freeTimeStarts) && (eventEnds.isBefore(freeTimeEnds) || eventEnds.isEqual(freeTimeEnds)))){
+                    && (eventEnds.isAfter(freeTimeStarts) && (eventEnds.isBefore(freeTimeEnds) || eventEnds.isEqual(freeTimeEnds)))) {
                 newEvent = Event.builder()
                         .eventStarts(freeTimeStarts)
                         .eventEnds(eventEnds)
                         .build();
                 break;
-            } else if ( ((eventStarts.isAfter(freeTimeStarts) || eventStarts.isEqual(freeTimeStarts))
-                    &&(eventStarts.isBefore(freeTimeEnds))) && (eventEnds.isAfter(freeTimeEnds))){
+            } else if (((eventStarts.isAfter(freeTimeStarts) || eventStarts.isEqual(freeTimeStarts))
+                    && (eventStarts.isBefore(freeTimeEnds))) && (eventEnds.isAfter(freeTimeEnds))) {
                 newEvent = Event.builder()
                         .eventStarts(eventStarts)
                         .eventEnds(freeTimeEnds)
                         .build();
                 break;
-            } else if( eventStarts.isAfter(freeTimeStarts) && eventEnds.isBefore(freeTimeEnds)) {
+            } else if (eventStarts.isAfter(freeTimeStarts) && eventEnds.isBefore(freeTimeEnds)) {
                 newEvent = Event.builder()
                         .eventStarts(eventStarts)
                         .eventEnds(eventEnds)
                         .build();
                 break;
-            } else if(eventStarts.isBefore(freeTimeStarts) && eventEnds.isAfter(freeTimeEnds)){
+            } else if (eventStarts.isBefore(freeTimeStarts) && eventEnds.isAfter(freeTimeEnds)) {
                 newEvent = Event.builder()
                         .eventStarts(freeTimeStarts)
                         .eventEnds(freeTimeEnds)
@@ -163,7 +163,7 @@ public class EventServiceImpl implements EventService {
         if (!users.isEmpty()) {
             LocalDateTime currentTime = LocalDateTime.now();
             for (User user : users) {
-                if (!isEventExist(LocalDateTime.parse(eventForm.getEventStarts()),LocalDateTime.parse(eventForm.getEventEnds()), user)) {
+                if (!isEventExist(LocalDateTime.parse(eventForm.getEventStarts()), LocalDateTime.parse(eventForm.getEventEnds()), user)) {
                     throw new AlreadyExistEventException("event already exist");
                 } else {
                     Event newEvent = Event.builder().eventName(eventForm.getName())

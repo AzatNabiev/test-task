@@ -7,8 +7,8 @@ import ru.itis.javalab.controllers.EventsController;
 import ru.itis.javalab.controllers.UsersController;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 @SpringBootTest
 public class SmokeTest {
@@ -19,11 +19,12 @@ public class SmokeTest {
 
 
     @Test
-    void contextLoadsEventsController(){
+    void contextLoadsEventsController() {
         assertThat(eventsController, is(notNullValue()));
     }
+
     @Test
-    void contextLoadsUsersController(){
+    void contextLoadsUsersController() {
         assertThat(usersController, is(notNullValue()));
     }
 

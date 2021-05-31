@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import ru.itis.javalab.models.User;
-import static junit.framework.TestCase.assertEquals;
+
 import java.util.Optional;
+
+import static junit.framework.TestCase.assertEquals;
 
 @SpringBootTest
 @AutoConfigureEmbeddedDatabase(type = AutoConfigureEmbeddedDatabase.DatabaseType.POSTGRES, beanName = "dataSource", provider = AutoConfigureEmbeddedDatabase.DatabaseProvider.ZONKY,
@@ -25,14 +27,14 @@ public class UserRepositoryTest {
                 .name("Azat")
                 .build();
         Optional<User> actualUser = userRepository.findByEmail("testmail@gmail.com");
-        actualUser.ifPresent(val -> assertEquals(expectedUser,val));
+        actualUser.ifPresent(val -> assertEquals(expectedUser, val));
     }
 
     @Test
-    void return_incorrect_user(){
+    void return_incorrect_user() {
         User expectedUser = null;
         Optional<User> actualUser = userRepository.findByEmail("testerrormail@gmail.com");
-        actualUser.ifPresent(val -> assertEquals(expectedUser,val));
+        actualUser.ifPresent(val -> assertEquals(expectedUser, val));
     }
 
 

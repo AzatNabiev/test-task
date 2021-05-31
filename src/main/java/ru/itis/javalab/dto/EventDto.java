@@ -1,12 +1,12 @@
 package ru.itis.javalab.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.itis.javalab.form.EventForm;
 import ru.itis.javalab.models.Event;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +22,7 @@ public class EventDto {
     private LocalDateTime eventStarts;
     private LocalDateTime eventEnds;
 
-    public static EventDto fromModelToDto(Event event){
+    public static EventDto fromModelToDto(Event event) {
         return EventDto.builder()
                 .name(event.getEventName())
                 .eventStarts(event.getEventStarts())
@@ -30,11 +30,11 @@ public class EventDto {
                 .build();
     }
 
-    public static List<EventDto> fromModelToDto(List<Event> events){
+    public static List<EventDto> fromModelToDto(List<Event> events) {
         return events.stream().map(EventDto::fromModelToDto).collect(Collectors.toList());
     }
 
-    public static EventDto fromFormToDto(EventForm eventForm){
+    public static EventDto fromFormToDto(EventForm eventForm) {
         return EventDto.builder()
                 .name(eventForm.getName())
                 .login(eventForm.getLogin())
@@ -44,7 +44,7 @@ public class EventDto {
                 .build();
     }
 
-    public static List<EventDto> from(List<EventForm> events){
+    public static List<EventDto> from(List<EventForm> events) {
         return events.stream().map(EventDto::fromFormToDto).collect(Collectors.toList());
     }
 

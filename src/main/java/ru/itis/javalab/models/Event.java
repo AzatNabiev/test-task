@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.itis.javalab.dto.EventDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,7 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @Table(indexes = {@Index(name = "eventStarts", columnList = "eventStarts"),
-                    @Index(name="eventEnds", columnList = "eventEnds")})
+        @Index(name = "eventEnds", columnList = "eventEnds")})
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
