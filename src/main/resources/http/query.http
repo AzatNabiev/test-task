@@ -62,3 +62,8 @@ Content-Type: application/json
     "test@gmail.com"
   ]
 }
+
+###
+
+GET http://localhost:8080/users/get
+Content-Type: application/json
